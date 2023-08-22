@@ -1,40 +1,39 @@
-"use client";
-import { CldUploadButton } from "next-cloudinary";
-import React from "react";
-import { UploadResult } from "../../../type";
-import { Button } from "@/components/ui/button";
+import cloudinary from "cloudinary";
+import UploadButton from "./components/UploadButton";
+import { SearchResult } from "../../../type";
+import { CldImage } from "next-cloudinary";
+import CloudinaryImgsUi from "./components/CloudinaryImgsUi";
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  // fetch all gallerys from a cloudy server
+  const results = (await cloudinary.v2.search
+    .expression("resource_type:image ")
+    .sort_by('created_at', "desc")
+    .max_results(100)
+    .execute()) as { resources: SearchResult[] };
+
   return (
     <>
       <section>
-        <div className="flex justify-between">
-          <h1 className="text-4xl font-bold">gallery</h1>
-          <Button asChild>
-            <div className="flex gap-2 cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+        <div className="flex flex-col gap-8">
+          <div className="flex justify-between">
+            <h1 className="text-4xl font-bold">gallery</h1>
+            <UploadButton />
+          </div>
+          <div className="grid grid-cols-4 gap-4 ">
+            {results.resources.map((el, i) => {
+              return (
+                <CloudinaryImgsUi
+                  width="400"
+                  height="300"
+                  // sizes="100vw"
+                  key={el.public_id}
+                  src={el.public_id}
+                  alt={el.secure_url}
                 />
-              </svg>
-
-              <CldUploadButton
-                uploadPreset="naal8wwm"
-                // onUpload={(result: UploadResult) => {
-                //   // setImgId(result.info.public_id);
-                // }}
-              />
-            </div>
-          </Button>
+              );
+            })}
+          </div>
         </div>
       </section>
     </>

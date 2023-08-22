@@ -37,7 +37,7 @@ export default function RootLayout({
           {/* SIDEBAR */}
           <Sidebar />
           {/* ALL PAGES IS HERE */}
-          <div className="w-full  px-4 pt-2">{children}</div>
+          <div className="w-full  px-4 py-2">{children}</div>
         </div>
       </body>
     </html>
