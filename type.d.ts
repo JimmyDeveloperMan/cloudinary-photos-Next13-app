@@ -6,5 +6,5 @@ export type UploadResult = {
 };
 export type SearchResult = {
   public_id: string;
-  secure_url:string
+  tags: string[];
 };
