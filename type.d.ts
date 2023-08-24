@@ -8,3 +8,9 @@ export type SearchResult = {
   public_id: string;
   tags: string[];
 };
+export type AlbumsFolder = {
+
+    name: string;
+    path: string;
+
+};

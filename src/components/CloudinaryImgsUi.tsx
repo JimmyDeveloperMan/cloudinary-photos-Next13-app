@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 
 import { useState, useTransition } from "react";
 import { SearchResult } from "../../type";
-import { setAsFavoriteAction } from "../app/gallery/components/Actions";
+import { setAsFavoriteAction } from "../app/gallery/components/actions";
 import ImageMenu from "./ImageMenu";
 
 export default function CloudinaryImgsUi(
@@ -36,7 +36,7 @@ export default function CloudinaryImgsUi(
         />
       </div>
       <div>
-        <ImageMenu />
+        <ImageMenu image={imgData} />
       </div>
     </div>
   );

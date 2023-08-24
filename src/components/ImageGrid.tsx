@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { SearchResult } from "../../type";
-import CloudinaryImgsUi from "@/components/CloudinaryImgsUi";
 
 const MAX_COLS = 4;
 export default function ImageGrid({
@@ -11,7 +10,7 @@ export default function ImageGrid({
   getImage: (imageData: SearchResult) => ReactNode;
 }) {
   function getColumns(colIdx: number) {
-    return images.filter((el, i) => i % MAX_COLS === colIdx);
+    return images.filter((_, i) => i % MAX_COLS === colIdx);
   }
   return (
     <div className="grid grid-cols-4 gap-4 w-fit container">
