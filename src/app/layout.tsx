@@ -4,6 +4,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="border-b border-slate-300">
           <div className="flex h-16 items-center px-4 container mx-auto ">
-            PHOTOS APP
+            <Link href={"/"}> PHOTOS APP</Link>
             {/* AVATAR */}
             <div className="ml-auto flex items-center space-x-4">
               <Avatar>
@@ -32,7 +33,6 @@ export default function RootLayout({
             </div>
           </div>
         </div>
-
         <div className="flex h-screen">
           {/* SIDEBAR */}
           <Sidebar />
