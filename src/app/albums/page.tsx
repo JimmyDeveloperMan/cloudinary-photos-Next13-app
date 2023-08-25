@@ -6,7 +6,6 @@ export default async function AlbumsPage() {
   const { folders } = (await cloudinary.v2.api.root_folders()) as {
     folders: AlbumsFolder[];
   };
-  console.log(folders);
 
   return (
     <>

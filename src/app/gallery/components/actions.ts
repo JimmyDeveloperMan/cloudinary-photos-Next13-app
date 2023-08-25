@@ -5,8 +5,6 @@ export async function setAsFavoriteAction(
   publicId: string,
   isFavorited: boolean
 ) {
-  console.log(isFavorited);
-
   if (isFavorited) {
     await cloudinary.v2.uploader.add_tag("favorite", [publicId]);
   } else {

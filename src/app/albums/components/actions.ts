@@ -9,8 +9,6 @@ export async function addImageToAlbum(image: SearchResult, albumName: string) {
     parts = parts.slice(1);
   }
   const publicId = parts.join("/");
-  console.log(parts);
-  console.log(publicId);
 
   await cloudinary.v2.uploader.rename(
     image.public_id,

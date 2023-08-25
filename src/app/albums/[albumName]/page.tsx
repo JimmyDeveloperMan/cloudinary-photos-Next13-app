@@ -17,7 +17,6 @@ export default async function AlbumFolderDetailsPage({
     .with_field("tags")
     .max_results(50)
     .execute()) as { resources: SearchResult[] };
-  console.log("results", results);
 
   return (
     <>

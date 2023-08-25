@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Edit, Menu } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -9,6 +9,8 @@ import {
 import { AddToAlbumDialog } from "./AddToAlbumDialog";
 import { SearchResult } from "../../type";
 import { useState } from "react";
+import Link from "next/link";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export default function ImageMenu({ image }: { image: SearchResult }) {
   const [open, setOpen] = useState(false);
@@ -16,9 +18,7 @@ export default function ImageMenu({ image }: { image: SearchResult }) {
     <div className="absolute top-2 right-2">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
-          {/* <Button variant="outline"> */}
           <Menu />
-          {/* </Button> */}
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit">
           <DropdownMenuItem
@@ -26,11 +26,22 @@ export default function ImageMenu({ image }: { image: SearchResult }) {
             className="cursor-pointer"
             onClick={() => setOpen(false)}
           >
-            <AddToAlbumDialog image={image} onClose={()=>setOpen(false)} />
+            <AddToAlbumDialog image={image} onClose={() => setOpen(false)} />
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            asChild
+            className="cursor-pointer"
+            onClick={() => setOpen(false)}
+          >
+            <Link
+              href={`/edit?publicId=${encodeURIComponent(image.public_id)}`}
+            >
+              <Edit />
+              Edit picture
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
 }
-// explane this asChild ?
