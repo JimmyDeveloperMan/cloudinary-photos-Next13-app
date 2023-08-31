@@ -10,7 +10,6 @@ import { AddToAlbumDialog } from "./AddToAlbumDialog";
 import { SearchResult } from "../../type";
 import { useState } from "react";
 import Link from "next/link";
-import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export default function ImageMenu({ image }: { image: SearchResult }) {
   const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ export default function ImageMenu({ image }: { image: SearchResult }) {
         <DropdownMenuTrigger asChild>
           <Menu />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-fit">
+        <DropdownMenuContent className="w-fit flex flex-col gap-2">
           <DropdownMenuItem
             asChild
             className="cursor-pointer"
@@ -30,7 +29,7 @@ export default function ImageMenu({ image }: { image: SearchResult }) {
           </DropdownMenuItem>
           <DropdownMenuItem
             asChild
-            className="cursor-pointer"
+            className="text-left border flex gap-2 p-2 "
             onClick={() => setOpen(false)}
           >
             <Link

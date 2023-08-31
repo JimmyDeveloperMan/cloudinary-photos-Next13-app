@@ -1,8 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@radix-ui/react-label";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
-import { cva } from "class-variance-authority";
 
 export default function EditPage({
   searchParams: { publicId },
@@ -18,6 +19,8 @@ export default function EditPage({
     | "gray"
   >();
 
+  const [prompt, setPrompt] = useState("");
+  const [pendingPrompt, setPendingPrompt] = useState("");
   return (
     <section>
       <div className="flex flex-col gap-8 ">
@@ -25,9 +28,21 @@ export default function EditPage({
           <h1 className="text-4xl font-bold">Edit {publicId}</h1>
         </div>
         <div className="flex gap-4">
-          <Button onClick={() => setTransformation("generative-fill")}>
-            Generative Fill
-          </Button>
+          <div className="flex flex-col gap-3">
+            <Button
+              onClick={() => {
+                setTransformation("generative-fill");
+                setPrompt(pendingPrompt);
+              }}
+            >
+              Generative Fill
+            </Button>
+            <Label>Prompt</Label>
+            <Input
+              value={pendingPrompt}
+              onChange={(e) => setPendingPrompt(e.target.value)}
+            />
+          </div>
           <Button onClick={() => setTransformation("removeBackground")}>
             Remove Background
           </Button>
@@ -42,17 +57,17 @@ export default function EditPage({
         </div>
         <div className="grid grid-cols-2 gap-12">
           <div>
-            <CldImage src={publicId} alt={publicId} width={500} height={500} />
+            <CldImage src={publicId} alt={publicId} width="400" height="300" />
           </div>
           {transformation === "generative-fill" && (
             <div>
               <CldImage
                 src={publicId}
                 alt={publicId}
-                width={500}
-                height={500}
+                width={400}
+                height={300}
                 crop="pad"
-                fillBackground
+                fillBackground={{ prompt }}
               />
             </div>
           )}
@@ -61,8 +76,8 @@ export default function EditPage({
               <CldImage
                 src={publicId}
                 alt={publicId}
-                width={500}
-                height={500}
+                width={400}
+                height={300}
                 crop="pad"
                 blur={"300"}
               />
@@ -73,8 +88,8 @@ export default function EditPage({
               <CldImage
                 src={publicId}
                 alt={publicId}
-                width={500}
-                height={500}
+                width={400}
+                height={300}
                 removeBackground
               />
             </div>
@@ -84,8 +99,8 @@ export default function EditPage({
               <CldImage
                 src={publicId}
                 alt={publicId}
-                width={500}
-                height={500}
+                width={400}
+                height={300}
                 grayscale
               />
             </div>
@@ -95,8 +110,8 @@ export default function EditPage({
               <CldImage
                 src={publicId}
                 alt={publicId}
-                width={500}
-                height={500}
+                width={400}
+                height={300}
                 pixelate
               />
             </div>

@@ -18,7 +18,7 @@ export default function CloudinaryImgsUi(
   const [isFavorited, setIsFavorited] = useState(
     imgData.tags.includes("favorite")
   );
-  console.log(imgData.public_id);
+  console.log(imgData);
   
   return (
     <div className="relative">
