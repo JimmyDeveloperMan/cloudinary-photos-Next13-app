@@ -11,3 +11,4 @@ export async function setAsFavoriteAction(
     await cloudinary.v2.uploader.remove_tag("favorite", [publicId]);
   }
 }
+ 
