@@ -19,7 +19,7 @@ export default async function AlbumFolderDetailsPage({
     .execute()) as { resources: SearchResult[] };
 
   return (
-    <>
+    <> 
       <section>
         <ForceRefresh />
         <div className="flex flex-col gap-8 ">
