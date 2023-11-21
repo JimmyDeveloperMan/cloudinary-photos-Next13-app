@@ -13,7 +13,7 @@ export default function EditPage({
   const [transformation, setTransformation] = useState<
     | undefined
     | "generative-fill"
-    | "blur"
+    // | "blur"
     | `removeBackground`
     | "pixelate"
     | "gray"
@@ -50,7 +50,7 @@ export default function EditPage({
           <Button onClick={() => setTransformation("pixelate")}>
             Pixelate
           </Button>
-          <Button onClick={() => setTransformation("blur")}>Blur</Button>
+          {/* <Button onClick={() => setTransformation("blur")}>Blur</Button> */}
           <Button variant="ghost" onClick={() => setTransformation(undefined)}>
             Clear All
           </Button>
@@ -71,7 +71,7 @@ export default function EditPage({
               />
             </div>
           )}
-          {transformation === "blur" && (
+          {/* {transformation === "blur" && (
             <div>
               <CldImage
                 src={publicId}
@@ -79,10 +79,10 @@ export default function EditPage({
                 width={400}
                 height={300}
                 crop="pad"
-                blur={"300"}
+                // blur
               />
             </div>
-          )}
+          )} */}
           {transformation === "removeBackground" && (
             <div>
               <CldImage
