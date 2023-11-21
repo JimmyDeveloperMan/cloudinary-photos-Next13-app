@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { Folder, Heart, Image as Images, Trash } from "lucide-react";
+import { Folder, Heart, Image as Images } from "lucide-react";
 import Link from "next/link";
 import { AlbumsFolder } from "../../type";
 import cloudinary from "cloudinary";
@@ -59,10 +59,6 @@ export default async function Sidebar(): Promise<React.JSX.Element> {
                 <Heart />
                 Favorites
               </Link>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start FLEX gap-2">
-              <Trash />
-              Deleted
             </Button>
           </div>
         </div>
